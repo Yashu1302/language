@@ -8,7 +8,7 @@ st.title("LANGUAGE PREDICTION")
 
 # Load the data (using backward slashes in the path)
 #var = pd.read_csv("C:/Users/YASHWANTH ADMIN/OneDrive/Documents/language/dataset.csv.zip")
-var = pd.read_csv("'/content/dataset2.csv'")
+var = pd.read_csv("/content/dataset2.csv")
 
 
 # Divide data into input and output
