@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 # Add a title to the web app
 st.title("LANGUAGE PREDICTION")
@@ -11,11 +13,16 @@ var = pd.read_csv("dataset2.csv")
 
 # Divide data into input and output
 x = var.Text.tolist()  # Convert DataFrame column to a list of strings
-y = var.language      # output
+y = var.language  # output
 
-from sklearn.pipeline import make_pipeline
+# Split the data into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+# Create the pipeline with CountVectorizer and MultinomialNB
 model = make_pipeline(CountVectorizer(), MultinomialNB())
-model.fit(x, y)
+
+# Fit the model on the training data
+model.fit(x_train, y_train)
 
 # Input review
 x_review = st.text_input('ENTER THE TEXT ')
@@ -24,5 +31,10 @@ if x_review:
     y_pred = model.predict([x_review])
 
     # Print the predicted output
-    st.title(y_pred[0])
+    st.title(f"Predicted Language: {y_pred[0]}")
+
+    # If you want to display the accuracy on the test set
+    y_test_pred = model.predict(x_test)
+    test_accuracy = accuracy_score(y_test, y_test_pred)
+    st.write(f"Test Accuracy: {test_accuracy:.2f}")
 
