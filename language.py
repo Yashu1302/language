@@ -33,9 +33,3 @@ if x_review:
 
     # Print the predicted output
     st.title(f"Predicted Language: {y_pred[0]}")
-
-    # If you want to display the accuracy on the test set
-    y_test_pred = model.predict(x_test)
-    test_accuracy = accuracy_score(y_test, y_test_pred)
-    st.write(f"Test Accuracy: {test_accuracy:.2f}")
-
