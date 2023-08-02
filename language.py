@@ -24,5 +24,5 @@ if x_review:
     y_pred = model.predict([x_review])
 
     # Print the predicted output
-    st.title(y_pred)
+    st.title(y_pred[0])
 
