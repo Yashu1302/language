@@ -6,10 +6,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 # Add a title to the web app
 st.title("LANGUAGE PREDICTION")
 
-# Load the data (using backward slashes in the path)
-#var = pd.read_csv("C:/Users/YASHWANTH ADMIN/OneDrive/Documents/language/dataset.csv.zip")
+# Load the data from the CSV file in the same directory
 var = pd.read_csv("dataset2.csv")
-
 
 # Divide data into input and output
 x = var.Text.tolist()  # Convert DataFrame column to a list of strings
@@ -26,4 +24,5 @@ if x_review:
     y_pred = model.predict([x_review])
 
     # Print the predicted output
-    st.title(y_pred[0])
+    st.title(y_pred)
+
